@@ -14,5 +14,9 @@ namespace ZavenDotNetInterview.App.Models.Context
 
 
         int SaveChanges();
+        DbSet Set(Type entityType);
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        DbEntityEntry Entry(object entity);
+        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }
 }

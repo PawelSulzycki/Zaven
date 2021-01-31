@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using ZavenDotNetInterview.App.Extensions;
 using ZavenDotNetInterview.App.Models;
 using ZavenDotNetInterview.App.Models.Context;
 using ZavenDotNetInterview.App.Repositories;
+using ZavenDotNetInterview.App.Repositories._Interfaces;
+using ZavenDotNetInterview.App.Services._Interfaces;
 
 namespace ZavenDotNetInterview.App.Services
 {
