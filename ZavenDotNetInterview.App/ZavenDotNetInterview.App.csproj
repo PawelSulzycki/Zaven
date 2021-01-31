@@ -153,6 +153,7 @@
       <DependentUpon>202002050841207_ChangeJobStateName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Context\IZavenDotNetInterviewContext.cs" />
     <Compile Include="Models\Context\ZavenDotNetInterviewContext.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Job.cs" />

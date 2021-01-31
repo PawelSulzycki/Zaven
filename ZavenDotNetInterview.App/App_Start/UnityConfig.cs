@@ -1,10 +1,12 @@
 using System;
 
 using Unity;
-using Unity.Lifetime;
+using Unity.AspNet.Mvc;
+using Unity.Injection;
 using ZavenDotNetInterview.App.Models.Context;
 using ZavenDotNetInterview.App.Repositories;
 using ZavenDotNetInterview.App.Services;
+using ZavenDotNetInterview.App.Services._Interfaces;
 
 namespace ZavenDotNetInterview.App
 {
@@ -45,9 +47,10 @@ namespace ZavenDotNetInterview.App
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            container.RegisterType<IJobsRepository, JobsRepository>(new ContainerControlledLifetimeManager());
-            container.RegisterInstance<ZavenDotNetInterviewContext>(new ZavenDotNetInterviewContext(), InstanceLifetime.Singleton);
-            container.RegisterType<IJobProcessorService, JobProcessorService>();
+            container.RegisterType<IJobsRepository, JobsRepository>();
+            container.RegisterType<IZavenDotNetInterviewContext, ZavenDotNetInterviewContext>(new PerRequestLifetimeManager(), new InjectionConstructor("name=ZavenDotNetInterview"));
+            container.RegisterType<IJobProcessorService, JobProcessorService>(new PerRequestLifetimeManager());
+            container.RegisterType<IJobValueService, JobValueService>(new PerRequestLifetimeManager());
         }
     }
 }
