@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ZavenDotNetInterview.App.Services._Interfaces;
@@ -58,7 +57,8 @@ namespace ZavenDotNetInterview.App.Controllers
 
                 return View();
             }
-            else
+            
+            if(ModelState.IsValid)
             {
                 _jobValueService.Add(viewModel.Name, viewModel.DoAfter);
 
