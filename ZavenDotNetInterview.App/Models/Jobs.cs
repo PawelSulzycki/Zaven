@@ -11,6 +11,7 @@ namespace ZavenDotNetInterview.App.Models
         public string Name { get; set; }
         public JobStatus Status { get; set; }
         public DateTime? DoAfter { get; set; }
+        public DateTime? LastUpdatedAt { get; set; }
         public virtual List<Logs> Logs { get; set; }
     }
 

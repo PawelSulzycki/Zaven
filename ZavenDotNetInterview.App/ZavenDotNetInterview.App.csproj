@@ -152,6 +152,10 @@
     <Compile Include="Migrations\202002050841207_ChangeJobStateName.designer.cs">
       <DependentUpon>202002050841207_ChangeJobStateName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101311652076_Add_Column_LastUpdatedAt_In_Job.cs" />
+    <Compile Include="Migrations\202101311652076_Add_Column_LastUpdatedAt_In_Job.designer.cs">
+      <DependentUpon>202101311652076_Add_Column_LastUpdatedAt_In_Job.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\IZavenDotNetInterviewContext.cs" />
     <Compile Include="Models\Context\ZavenDotNetInterviewContext.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002050841207_ChangeJobStateName.resx">
       <DependentUpon>202002050841207_ChangeJobStateName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311652076_Add_Column_LastUpdatedAt_In_Job.resx">
+      <DependentUpon>202101311652076_Add_Column_LastUpdatedAt_In_Job.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>

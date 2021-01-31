@@ -54,6 +54,8 @@ namespace ZavenDotNetInterview.App.Services
         {
             job.Status = jobStatus;
 
+            job.LastUpdatedAt = DateTime.Now;
+
             _jobRepository.Update(job);
 
             _jobRepository.Save();

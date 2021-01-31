@@ -7,6 +7,9 @@ namespace ZavenDotNetInterview.App.Models.Context
         public DbSet<Jobs> Jobs { get; set; }
         public DbSet<Logs> Logs { get; set; }
 
+        public ZavenDotNetInterviewContext() : base("name=ZavenDotNetInterview")
+        {
+        }
         public ZavenDotNetInterviewContext(string connectionString) : base(connectionString)
         {
         }
