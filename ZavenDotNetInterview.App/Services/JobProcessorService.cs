@@ -21,22 +21,29 @@ namespace ZavenDotNetInterview.App.Services
 
         public async Task ProcessJobs()
         {
-            var statusesToProcess = new JobStatus[]
+            try
             {
-                JobStatus.New,
-                JobStatus.Failed
-            };
+                var statusesToProcess = new JobStatus[]
+                {
+                    JobStatus.New,
+                    JobStatus.Failed
+                };
 
-            var jobsToProcess = _jobsRepository
-                .Get(x => statusesToProcess.Contains(x.Status) 
-                    && (x.DoAfter.HasValue ? x.DoAfter.Value < DateTime.Now : x.DoAfter.Value == null));
+                var jobsToProcess = _jobsRepository
+                    .Get(x => statusesToProcess.Contains(x.Status)
+                        && (x.DoAfter.HasValue ? x.DoAfter.Value < DateTime.Now : x.DoAfter.Value == null));
 
-            var tasks = jobsToProcess.Select(async currentjob =>
+                var tasks = jobsToProcess.Select(async currentjob =>
+                {
+                    await SetJobStatus(currentjob);
+                });
+
+                await Task.WhenAll(tasks);
+            }
+            catch (Exception ex)
             {
-                await SetJobStatus(currentjob);
-            });
-
-            await Task.WhenAll(tasks);
+                //TODO dissuced implemention of logging excetions
+            }
         }
 
         private async Task SetJobStatus(Jobs currentjob)
