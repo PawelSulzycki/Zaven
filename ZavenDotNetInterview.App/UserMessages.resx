@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="JobChangeStatus" xml:space="preserve">
+    <value>Job with Id: {0} and name {1} changed status to {2}</value>
+  </data>
   <data name="JobExist" xml:space="preserve">
     <value>The job exists in the database</value>
   </data>
   <data name="JobSave" xml:space="preserve">
     <value>The job has been saved in the database</value>
+  </data>
+  <data name="NewJobAdded" xml:space="preserve">
+    <value>New Job with Id: {0} and name {1} has been added at {2}</value>
   </data>
 </root>

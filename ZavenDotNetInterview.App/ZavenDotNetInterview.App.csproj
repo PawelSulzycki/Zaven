@@ -155,13 +155,14 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\IZavenDotNetInterviewContext.cs" />
     <Compile Include="Models\Context\ZavenDotNetInterviewContext.cs" />
-    <Compile Include="Models\Log.cs" />
-    <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Logs.cs" />
+    <Compile Include="Models\Jobs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\_Interfaces\IJobsRepository.cs" />
     <Compile Include="Repositories\LogsRepository.cs" />
     <Compile Include="Repositories\JobsRepository.cs" />
+    <Compile Include="Repositories\_Interfaces\ILogsRepository.cs" />
     <Compile Include="Repositories\_Interfaces\IRepository.cs" />
     <Compile Include="Services\JobValueService.cs" />
     <Compile Include="Services\_Interfaces\IJobProcessorService.cs" />

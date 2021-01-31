@@ -5,10 +5,10 @@ using ZavenDotNetInterview.App.Models;
 
 namespace ZavenDotNetInterview.App.Repositories._Interfaces
 {
-    public interface IJobsRepository : IRepository<Job>
+    public interface IJobsRepository : IRepository<Jobs>
     {
-        IEnumerable<Job> GetAll();
-        bool IsExist(Expression<Func<Job, bool>> filter);
+        IEnumerable<Jobs> GetAll();
+        bool IsExist(Expression<Func<Jobs, bool>> filter);
         Guid Insert(string name, DateTime? doAfter);
     }
 }

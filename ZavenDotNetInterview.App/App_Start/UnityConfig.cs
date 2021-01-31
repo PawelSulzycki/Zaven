@@ -49,7 +49,10 @@ namespace ZavenDotNetInterview.App
 
             // TODO: Register your type's mappings here.
             container.RegisterType<IJobsRepository, JobsRepository>();
+            container.RegisterType<ILogsRepository, LogsRepository>();
+            
             container.RegisterType<IZavenDotNetInterviewContext, ZavenDotNetInterviewContext>(new PerRequestLifetimeManager(), new InjectionConstructor("name=ZavenDotNetInterview"));
+            
             container.RegisterType<IJobProcessorService, JobProcessorService>(new PerRequestLifetimeManager());
             container.RegisterType<IJobValueService, JobValueService>(new PerRequestLifetimeManager());
         }

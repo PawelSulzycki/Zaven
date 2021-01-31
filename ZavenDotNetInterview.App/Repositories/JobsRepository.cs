@@ -8,13 +8,13 @@ using ZavenDotNetInterview.App.Repositories._Interfaces;
 
 namespace ZavenDotNetInterview.App.Repositories
 {
-    public class JobsRepository : Repository<Job>, IJobsRepository
+    public class JobsRepository : Repository<Jobs>, IJobsRepository
     {
         public JobsRepository(IZavenDotNetInterviewContext ctx) : base(ctx) 
         {
         }
 
-        public IEnumerable<Job> GetAll()
+        public IEnumerable<Jobs> GetAll()
         {
             var result = _ctx.Jobs;
 
@@ -23,7 +23,7 @@ namespace ZavenDotNetInterview.App.Repositories
 
         public Guid Insert(string name, DateTime? doAfter)
         {
-            var job = new Job
+            var job = new Jobs
             {
                 Id = Guid.NewGuid(),
                 Name = name,
@@ -36,7 +36,7 @@ namespace ZavenDotNetInterview.App.Repositories
             return job.Id;
         }
 
-        public bool IsExist(Expression<Func<Job, bool>> filter)
+        public bool IsExist(Expression<Func<Jobs, bool>> filter)
             => _ctx.Jobs
                 .Where(filter)
                 .Any();

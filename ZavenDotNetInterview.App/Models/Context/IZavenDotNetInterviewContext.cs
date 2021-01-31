@@ -10,8 +10,8 @@ namespace ZavenDotNetInterview.App.Models.Context
 {
     public interface IZavenDotNetInterviewContext
     {
-        DbSet<Job> Jobs { get; set; }
-        DbSet<Log> Logs { get; set; }
+        DbSet<Jobs> Jobs { get; set; }
+        DbSet<Logs> Logs { get; set; }
 
 
         int SaveChanges();

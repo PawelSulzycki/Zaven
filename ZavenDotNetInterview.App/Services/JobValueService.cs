@@ -8,20 +8,32 @@ namespace ZavenDotNetInterview.App.Services
 {
     public class JobValueService : IJobValueService
     {
-        private readonly IJobsRepository _jobRepository;
+        private readonly IJobsRepository _jobsRepository;
+        private readonly ILogsRepository _logsRepository;
 
-        public JobValueService(IJobsRepository jobRepository)
+        public JobValueService(IJobsRepository jobsRepository, ILogsRepository logsRepository)
         {
-            _jobRepository = jobRepository;
+            _jobsRepository = jobsRepository;
+            _logsRepository = logsRepository;
         }
 
         public void Add(string name, DateTime? doAfter)
         {
             try
             {
-                _jobRepository.Insert(name, doAfter);
+                var idJob = _jobsRepository.Insert(name, doAfter);
 
-                _jobRepository.Save();
+                _jobsRepository.Save();
+
+                var log = new Logs
+                {
+                    JobId = idJob,
+                    Description = string.Format(UserMessages.NewJobAdded, idJob, name, DateTime.Now)
+                };
+
+                _logsRepository.Insert(log);
+
+                _logsRepository.Save();
             }
             catch (Exception ex)
             {
@@ -29,16 +41,16 @@ namespace ZavenDotNetInterview.App.Services
             }
         }
 
-        public IEnumerable<Job> GetAll()
+        public IEnumerable<Jobs> GetAll()
         {
-            var result = _jobRepository.GetAll();
+            var result = _jobsRepository.GetAll();
 
             return result;
         }
 
         public bool IsExist(string name)
         {
-            var result = _jobRepository.IsExist(x => x.Name == name);
+            var result = _jobsRepository.IsExist(x => x.Name == name);
 
             return result;
         }

@@ -6,7 +6,7 @@ namespace ZavenDotNetInterview.App.Services._Interfaces
 {
     public interface IJobValueService
     {
-        IEnumerable<Job> GetAll();
+        IEnumerable<Jobs> GetAll();
         bool IsExist(string name);
         void Add(string name, DateTime? doAfter);
     }

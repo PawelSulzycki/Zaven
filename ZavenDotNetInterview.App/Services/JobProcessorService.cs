@@ -10,10 +10,12 @@ namespace ZavenDotNetInterview.App.Services
     public class JobProcessorService : IJobProcessorService
     {
         private readonly IJobsRepository _jobRepository;
+        private readonly ILogsRepository _logsRepository;
 
-        public JobProcessorService(IJobsRepository jobRepository)
+        public JobProcessorService(IJobsRepository jobRepository, ILogsRepository logsRepository)
         {
             _jobRepository = jobRepository;
+            _logsRepository = logsRepository;
         }
 
         public async Task ProcessJobs()
@@ -34,7 +36,7 @@ namespace ZavenDotNetInterview.App.Services
             await Task.WhenAll(tasks);
         }
 
-        private async Task SetJobStatus(Job currentjob)
+        private async Task SetJobStatus(Jobs currentjob)
         {
             var result = await this.ProcessJob(currentjob);
 
@@ -48,16 +50,26 @@ namespace ZavenDotNetInterview.App.Services
             }
         }
 
-        private void ChangeStatus(Job job, JobStatus jobStatus)
+        private void ChangeStatus(Jobs job, JobStatus jobStatus)
         {
             job.Status = jobStatus;
 
             _jobRepository.Update(job);
 
             _jobRepository.Save();
+
+            var log = new Logs
+            {
+                JobId = job.Id,
+                Description = string.Format(UserMessages.JobChangeStatus, job.Id, job.Name, jobStatus)
+            };
+
+            _logsRepository.Insert(log);
+
+            _logsRepository.Save();
         }
 
-        private async Task<bool> ProcessJob(Job job)
+        private async Task<bool> ProcessJob(Jobs job)
         {
             Random rand = new Random();
             if (rand.Next(10) < 5)

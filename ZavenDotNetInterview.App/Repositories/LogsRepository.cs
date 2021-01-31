@@ -6,35 +6,23 @@ using System.Linq;
 using System.Web;
 using ZavenDotNetInterview.App.Models;
 using ZavenDotNetInterview.App.Models.Context;
+using ZavenDotNetInterview.App.Repositories._Interfaces;
 
 namespace ZavenDotNetInterview.App.Repositories
 {
-    public class LogsRepository
+    public class LogsRepository : Repository<Logs>, ILogsRepository
     {
-        public LogsRepository()
+        public LogsRepository(IZavenDotNetInterviewContext ctx) : base(ctx)
         {
         }
 
-        public List<Log> GetJobsLogs(Guid jobId)
+        public override void Insert(Logs entity)
         {
-            using (var connection = new SqlConnection(@"data source=DESKTOP-MQ0KC6D\SQLEXPRESS;initial catalog=ZavenDotNetInterview;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot providerName = &quotSystem.Data.SqlClient"))
-            {
-                var logs = connection.Query<Log>($"SELECT * FROM Logs WHERE JobId = {jobId}").ToList();
-                return logs;
-            }
-        }
+            entity.Id = Guid.NewGuid();
 
-        public Log InsertLog(Log log)
-        {
-            using (var connection = new SqlConnection(@"data source=DESKTOP-MQ0KC6D\SQLEXPRESS;initial catalog=ZavenDotNetInterview;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot providerName = &quotSystem.Data.SqlClient"))
-            {
-                string sql = "INSERT INTO Logs (Id, Description, CreatedAt, JobId) Values (@Id, @Description, @CreatedAt, @JobId);";
+            entity.CreatedAt = DateTime.UtcNow;
 
-                log.CreatedAt = DateTime.UtcNow;
-                var newLog = connection.Execute(sql, new { Id = log.Id, Description = log.Description, CreatedAt = log.CreatedAt, JobId = log.JobId });
-
-                return log;
-            }
+            base.Insert(entity);
         }
     }
 }

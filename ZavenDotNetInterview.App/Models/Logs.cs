@@ -5,12 +5,12 @@ using System.Web;
 
 namespace ZavenDotNetInterview.App.Models
 {
-    public class Log
+    public class Logs
     {
         public Guid Id { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public Guid JobId { get; set; }
-        public virtual Job Job { get; set; }
+        public virtual Jobs Job { get; set; }
     }
 }

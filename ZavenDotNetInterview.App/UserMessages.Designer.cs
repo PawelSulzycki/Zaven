@@ -61,6 +61,15 @@ namespace ZavenDotNetInterview.App {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Job with Id: {0} and name {1} changed status to {2}.
+        /// </summary>
+        internal static string JobChangeStatus {
+            get {
+                return ResourceManager.GetString("JobChangeStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The job exists in the database.
         /// </summary>
         internal static string JobExist {
@@ -75,6 +84,15 @@ namespace ZavenDotNetInterview.App {
         internal static string JobSave {
             get {
                 return ResourceManager.GetString("JobSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Job with Id: {0} and name {1} has been added at {2}.
+        /// </summary>
+        internal static string NewJobAdded {
+            get {
+                return ResourceManager.GetString("NewJobAdded", resourceCulture);
             }
         }
     }
