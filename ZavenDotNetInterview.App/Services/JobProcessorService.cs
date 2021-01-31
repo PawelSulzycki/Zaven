@@ -27,7 +27,9 @@ namespace ZavenDotNetInterview.App.Services
                 JobStatus.Failed
             };
 
-            var jobsToProcess = _jobsRepository.Get(x => statusesToProcess.Contains(x.Status));
+            var jobsToProcess = _jobsRepository
+                .Get(x => statusesToProcess.Contains(x.Status) 
+                    && (x.DoAfter.HasValue ? x.DoAfter.Value < DateTime.Now : x.DoAfter.Value == null));
 
             var tasks = jobsToProcess.Select(async currentjob =>
             {
