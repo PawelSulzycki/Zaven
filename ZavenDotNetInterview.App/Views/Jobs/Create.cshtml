@@ -1,12 +1,50 @@
-﻿@*TODO: Use Razor Syntax*@
+﻿@model ZavenDotNetInterview.App.ViewModels.Jobs.CreateViewModel
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-<form action="/Jobs/Create" method="post">
-    Name: <input type="text" name="Name" placeholder="Name" />
-    Do after: <input type="datetime" name="DoAfter" placeholder="RRRR-MM-DD" />
-    <input type="submit" value="Add Task" />
-</form>
+@using (Html.BeginForm("Create", "Jobs", FormMethod.Post))
+{
+    <div class="form-group row">
+        <h2>Create</h2>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    @Html.LabelFor(x => x.Name)
+                </div>
+                <div class="col-4">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    @Html.Label("Start date of the process ")
+                </div>
+                <div class="col-4">
+                    @Html.TextBoxFor(model => model.DoAfter, new { @class = "form-control", @type = "date" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
+                    <input class="btn btn-success" type="submit" value="Add Task" />
+                </div>
+            </div>
+        </div>
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                <p>@ViewBag.ErrorMessage</p>
+            </div>
+        }
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="alert alert-success">
+                <p>@ViewBag.SuccessMessage</p>
+            </div>
+        }
+    </div>
+}

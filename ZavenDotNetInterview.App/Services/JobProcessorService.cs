@@ -9,9 +9,9 @@ namespace ZavenDotNetInterview.App.Services
 {
     public class JobProcessorService : IJobProcessorService
     {
-        private readonly IJobRepository _jobRepository;
+        private readonly IJobsRepository _jobRepository;
 
-        public JobProcessorService(IJobRepository jobRepository)
+        public JobProcessorService(IJobsRepository jobRepository)
         {
             _jobRepository = jobRepository;
         }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using ZavenDotNetInterview.App.Services._Interfaces;
+using ZavenDotNetInterview.App.ViewModels.Jobs;
 
 namespace ZavenDotNetInterview.App.Controllers
 {
@@ -41,23 +42,22 @@ namespace ZavenDotNetInterview.App.Controllers
 
         // POST: Tasks/Create
         [HttpPost]
-        public ActionResult Create(string name, DateTime doAfter)
+        public ActionResult Create(CreateViewModel viewModel)
         {
-            //try
-            //{
-            //    using (ZavenDotNetInterviewContext _ctx = new ZavenDotNetInterviewContext())
-            //    {
-            //        Job newJob = new Job() { Id = Guid.NewGuid(), DoAfter = doAfter, Name = name, Status = JobStatus.New };
-            //        newJob = _ctx.Jobs.Add(newJob);
-            //        _ctx.SaveChanges();
-            //    }
+            var isExist = _jobValueService.IsExist(viewModel.Name);
 
-            //    return RedirectToAction("Index");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
+            if (isExist)
+            {
+                ViewBag.ErrorMessage = UserMessages.JobExist;
+
+                return View();
+            }
+            else
+            {
+                _jobValueService.Add(viewModel.Name, viewModel.DoAfter);
+
+                ViewBag.SuccessMessage = UserMessages.JobSave;
+            }
 
             return View();
         }
