@@ -12,6 +12,8 @@ namespace ZavenDotNetInterview.App.AutoMapperProfiles
                 .ForMember(
                     dest => dest.ProcessingDate,
                     opt => opt.MapFrom(src => src.DoAfter.HasValue ? src.DoAfter.Value.ToShortDateString() : "No date"));
+
+            CreateMap<Jobs, IndexViewModel>();
         }
     }
 }

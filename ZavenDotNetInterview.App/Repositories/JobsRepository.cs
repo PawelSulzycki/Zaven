@@ -39,7 +39,8 @@ namespace ZavenDotNetInterview.App.Repositories
                 Id = Guid.NewGuid(),
                 Name = name,
                 DoAfter = doAfter,
-                Status = JobStatus.New
+                Status = JobStatus.New,
+                CreatedAt = DateTime.Now
             };
 
             Insert(job);

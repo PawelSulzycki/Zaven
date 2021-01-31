@@ -161,6 +161,10 @@
     <Compile Include="Migrations\202101311652076_Add_Column_LastUpdatedAt_In_Job.designer.cs">
       <DependentUpon>202101311652076_Add_Column_LastUpdatedAt_In_Job.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101311735208_Add_Column_CreatedAt_In_Jobs.cs" />
+    <Compile Include="Migrations\202101311735208_Add_Column_CreatedAt_In_Jobs.designer.cs">
+      <DependentUpon>202101311735208_Add_Column_CreatedAt_In_Jobs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\IZavenDotNetInterviewContext.cs" />
     <Compile Include="Models\Context\ZavenDotNetInterviewContext.cs" />
@@ -184,6 +188,7 @@
     </Compile>
     <Compile Include="ViewModels\Jobs\CreateViewModel.cs" />
     <Compile Include="ViewModels\Jobs\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\Jobs\IndexViewModel.cs" />
     <Compile Include="ViewModels\Jobs\LogViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101311652076_Add_Column_LastUpdatedAt_In_Job.resx">
       <DependentUpon>202101311652076_Add_Column_LastUpdatedAt_In_Job.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311735208_Add_Column_CreatedAt_In_Jobs.resx">
+      <DependentUpon>202101311735208_Add_Column_CreatedAt_In_Jobs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -24,9 +24,11 @@ namespace ZavenDotNetInterview.App.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            var jobs = _jobValueService.GetAll().ToList();
+            var jobs = _jobValueService.GetAll();
 
-            return View(jobs);
+            var viewModels = _mapper.Map<IEnumerable<IndexViewModel>>(jobs);
+
+            return View(viewModels);
         }
 
         // POST: Tasks/Process

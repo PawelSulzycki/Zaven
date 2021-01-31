@@ -44,7 +44,9 @@ namespace ZavenDotNetInterview.App.Services
 
         public IEnumerable<Jobs> GetAll()
         {
-            var result = _jobsRepository.GetAll();
+            var result = _jobsRepository
+                .GetAll()
+                .OrderByDescending(x=> x.CreatedAt);
 
             return result;
         }
