@@ -1,5 +1,5 @@
 ﻿using System;
-using ZavenDotNetInterview.App.Models;
+using ZavenDotNetInterview.App.Enums;
 
 namespace ZavenDotNetInterview.App.ViewModels.Jobs
 {

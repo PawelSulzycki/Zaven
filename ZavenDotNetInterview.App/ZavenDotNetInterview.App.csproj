@@ -145,6 +145,7 @@
     <Compile Include="AutoMapperProfiles\JobProfile.cs" />
     <Compile Include="AutoMapperProfiles\LogProfile.cs" />
     <Compile Include="Controllers\JobsController.cs" />
+    <Compile Include="Enums\JobStatus.cs" />
     <Compile Include="Extensions\JobExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,6 +165,10 @@
     <Compile Include="Migrations\202101311735208_Add_Column_CreatedAt_In_Jobs.cs" />
     <Compile Include="Migrations\202101311735208_Add_Column_CreatedAt_In_Jobs.designer.cs">
       <DependentUpon>202101311735208_Add_Column_CreatedAt_In_Jobs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101311753544_Add_Column_FailureCounter_In_Jobs.cs" />
+    <Compile Include="Migrations\202101311753544_Add_Column_FailureCounter_In_Jobs.designer.cs">
+      <DependentUpon>202101311753544_Add_Column_FailureCounter_In_Jobs.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\IZavenDotNetInterviewContext.cs" />
@@ -229,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101311735208_Add_Column_CreatedAt_In_Jobs.resx">
       <DependentUpon>202101311735208_Add_Column_CreatedAt_In_Jobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311753544_Add_Column_FailureCounter_In_Jobs.resx">
+      <DependentUpon>202101311753544_Add_Column_FailureCounter_In_Jobs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>

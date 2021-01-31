@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ZavenDotNetInterview.App.Enums;
 using ZavenDotNetInterview.App.Models;
 using ZavenDotNetInterview.App.Repositories._Interfaces;
 using ZavenDotNetInterview.App.Services._Interfaces;
@@ -46,7 +47,14 @@ namespace ZavenDotNetInterview.App.Services
             }
             else
             {
+                currentjob.FailureCounter++;
+
                 ChangeStatus(currentjob, JobStatus.Failed);
+            }
+
+            if (currentjob.FailureCounter == 5)
+            {
+                ChangeStatus(currentjob, JobStatus.Closed);
             }
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using ZavenDotNetInterview.App.Enums;
 
 namespace ZavenDotNetInterview.App.Models
 {
@@ -13,14 +12,7 @@ namespace ZavenDotNetInterview.App.Models
         public DateTime? DoAfter { get; set; }
         public DateTime? LastUpdatedAt { get; set; }
         public DateTime CreatedAt { get; set; }
+        public int FailureCounter { get; set; }
         public virtual List<Logs> Logs { get; set; }
-    }
-
-    public enum JobStatus
-    {
-        Failed = -1,
-        New = 0,
-        InProgress = 1,
-        Done = 2
     }
 }

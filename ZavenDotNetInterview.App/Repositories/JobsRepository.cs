@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using ZavenDotNetInterview.App.Enums;
 using ZavenDotNetInterview.App.Models;
 using ZavenDotNetInterview.App.Models.Context;
 using ZavenDotNetInterview.App.Repositories._Interfaces;

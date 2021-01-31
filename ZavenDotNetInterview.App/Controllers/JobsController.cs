@@ -32,7 +32,7 @@ namespace ZavenDotNetInterview.App.Controllers
         }
 
         // POST: Tasks/Process
-        [HttpGet]
+        [HttpPost]
         public async Task<ActionResult> Process()
         {
             await _jobProcessorService.ProcessJobs();

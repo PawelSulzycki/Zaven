@@ -9,9 +9,12 @@
             <h2 class="text-primary">Details Job</h2>
         </div>
         <div class="col-4">
-            <p>@Html.DisplayName("Name") @Model.Name</p>
-            <p>@Html.DisplayName("Status") @Model.Status</p>
-            <p>@Html.DisplayName("Processing Date") @Model.ProcessingDate</p>
+            <p>@Html.DisplayName("Name :") @Model.Name</p>
+            <p>@Html.DisplayName("Status :") @Model.Status</p>
+            <p>@Html.DisplayName("Processing Date :") @Model.ProcessingDate</p>
+            <p>@Html.DisplayName("Failure Counter :") @Model.FailureCounter</p>
+            <p>@Html.DisplayName("Creation Date :") @Model.CreationDate</p>
+            <p>@Html.DisplayName("Id Job :") @Model.Id</p>
         </div>
     </div>
     <table class="table table-bordered table-striped" style="width:100%">
@@ -22,9 +25,6 @@
                 </th>
                 <th>
                     @Html.DisplayName("Creation Date")
-                </th>
-                <th>
-                    @Html.DisplayName("ID Job")
                 </th>
             </tr>
         </thead>
@@ -37,9 +37,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(x => obj.CreatedAt)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(x => obj.JobId)
                     </td>
                 </tr>
             }
