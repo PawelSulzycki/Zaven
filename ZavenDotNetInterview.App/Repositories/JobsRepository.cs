@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using ZavenDotNetInterview.App.Models;
@@ -17,6 +18,16 @@ namespace ZavenDotNetInterview.App.Repositories
         public IEnumerable<Jobs> GetAll()
         {
             var result = _ctx.Jobs;
+
+            return result;
+        }
+
+        public Jobs GetOneWithLogs(Expression<Func<Jobs, bool>> filter)
+        {
+            var result = _ctx.Jobs
+                .Include(x => x.Logs)
+                .Where(filter)
+                .FirstOrDefault();
 
             return result;
         }

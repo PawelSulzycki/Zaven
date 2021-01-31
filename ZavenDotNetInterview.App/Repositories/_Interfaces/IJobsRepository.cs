@@ -10,5 +10,6 @@ namespace ZavenDotNetInterview.App.Repositories._Interfaces
         IEnumerable<Jobs> GetAll();
         bool IsExist(Expression<Func<Jobs, bool>> filter);
         Guid Insert(string name, DateTime? doAfter);
+        Jobs GetOneWithLogs(Expression<Func<Jobs, bool>> filter);
     }
 }

@@ -1,7 +1,50 @@
-﻿@*TODO: Use Razor Syntax*@
+﻿@model ZavenDotNetInterview.App.ViewModels.Jobs.DetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-4">
+            <h2 class="text-primary">Details Job</h2>
+        </div>
+        <div class="col-4">
+            <p>@Html.DisplayName("Name") @Model.Name</p>
+            <p>@Html.DisplayName("Status") @Model.Status</p>
+            <p>@Html.DisplayName("Processing Date") @Model.ProcessingDate</p>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Description")
+                </th>
+                <th>
+                    @Html.DisplayName("Creation Date")
+                </th>
+                <th>
+                    @Html.DisplayName("ID Job")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Logs)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => obj.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => obj.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => obj.JobId)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
+</div>
 

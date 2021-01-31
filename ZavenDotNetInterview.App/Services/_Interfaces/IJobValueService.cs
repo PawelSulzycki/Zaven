@@ -9,5 +9,6 @@ namespace ZavenDotNetInterview.App.Services._Interfaces
         IEnumerable<Jobs> GetAll();
         bool IsExist(string name);
         void Add(string name, DateTime? doAfter);
+        Jobs GetDetails(Guid idJob);
     }
 }

@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -139,6 +142,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="AutoMapperProfiles\JobProfile.cs" />
+    <Compile Include="AutoMapperProfiles\LogProfile.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Extensions\JobExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -178,6 +183,8 @@
       <DependentUpon>UserMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Jobs\CreateViewModel.cs" />
+    <Compile Include="ViewModels\Jobs\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\Jobs\LogViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

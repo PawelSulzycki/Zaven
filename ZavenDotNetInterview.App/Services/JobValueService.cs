@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ZavenDotNetInterview.App.Models;
 using ZavenDotNetInterview.App.Repositories._Interfaces;
 using ZavenDotNetInterview.App.Services._Interfaces;
@@ -46,6 +47,18 @@ namespace ZavenDotNetInterview.App.Services
             var result = _jobsRepository.GetAll();
 
             return result;
+        }
+
+        public Jobs GetDetails(Guid idJob)
+        {
+            var job = _jobsRepository
+                .GetOneWithLogs(x => x.Id == idJob);
+
+            job.Logs = job.Logs
+                .OrderByDescending(x => x.CreatedAt)
+                .ToList();
+
+            return job;
         }
 
         public bool IsExist(string name)

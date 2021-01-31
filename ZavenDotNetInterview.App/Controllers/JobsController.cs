@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -11,10 +13,12 @@ namespace ZavenDotNetInterview.App.Controllers
     {
         private readonly IJobProcessorService _jobProcessorService;
         private readonly IJobValueService _jobValueService;
-        public JobsController(IJobProcessorService jobProcessorService, IJobValueService jobValueService)
+        private readonly IMapper _mapper;
+        public JobsController(IJobProcessorService jobProcessorService, IJobValueService jobValueService, IMapper mapper)
         {
             _jobProcessorService = jobProcessorService;
             _jobValueService = jobValueService;
+            _mapper = mapper;
         }
 
         // GET: Tasks
@@ -64,7 +68,11 @@ namespace ZavenDotNetInterview.App.Controllers
 
         public ActionResult Details(Guid jobId)
         {
-            return View();
+            var detail = _jobValueService.GetDetails(jobId);
+
+            var viewModel = _mapper.Map<DetailsViewModel>(detail);
+
+            return View(viewModel);
         }
     }
 }

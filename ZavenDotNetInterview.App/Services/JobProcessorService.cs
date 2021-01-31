@@ -9,12 +9,12 @@ namespace ZavenDotNetInterview.App.Services
 {
     public class JobProcessorService : IJobProcessorService
     {
-        private readonly IJobsRepository _jobRepository;
+        private readonly IJobsRepository _jobsRepository;
         private readonly ILogsRepository _logsRepository;
 
-        public JobProcessorService(IJobsRepository jobRepository, ILogsRepository logsRepository)
+        public JobProcessorService(IJobsRepository jobsRepository, ILogsRepository logsRepository)
         {
-            _jobRepository = jobRepository;
+            _jobsRepository = jobsRepository;
             _logsRepository = logsRepository;
         }
 
@@ -26,7 +26,7 @@ namespace ZavenDotNetInterview.App.Services
                 JobStatus.Failed
             };
 
-            var jobsToProcess = _jobRepository.Get(x => statusesToProcess.Contains(x.Status));
+            var jobsToProcess = _jobsRepository.Get(x => statusesToProcess.Contains(x.Status));
 
             var tasks = jobsToProcess.Select(async currentjob =>
             {
@@ -56,9 +56,9 @@ namespace ZavenDotNetInterview.App.Services
 
             job.LastUpdatedAt = DateTime.Now;
 
-            _jobRepository.Update(job);
+            _jobsRepository.Update(job);
 
-            _jobRepository.Save();
+            _jobsRepository.Save();
 
             var log = new Logs
             {

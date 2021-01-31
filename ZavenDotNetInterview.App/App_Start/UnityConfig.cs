@@ -1,8 +1,10 @@
+using AutoMapper;
 using System;
 
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Injection;
+using ZavenDotNetInterview.App.AutoMapperProfiles;
 using ZavenDotNetInterview.App.Models.Context;
 using ZavenDotNetInterview.App.Repositories;
 using ZavenDotNetInterview.App.Repositories._Interfaces;
@@ -55,6 +57,14 @@ namespace ZavenDotNetInterview.App
             
             container.RegisterType<IJobProcessorService, JobProcessorService>(new PerRequestLifetimeManager());
             container.RegisterType<IJobValueService, JobValueService>(new PerRequestLifetimeManager());
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new JobProfile());
+                cfg.AddProfile(new LogProfile());
+            });
+
+            container.RegisterInstance<IMapper>(config.CreateMapper());
         }
     }
 }
