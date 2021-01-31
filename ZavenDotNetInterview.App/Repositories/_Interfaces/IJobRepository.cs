@@ -3,8 +3,8 @@ using ZavenDotNetInterview.App.Models;
 
 namespace ZavenDotNetInterview.App.Repositories._Interfaces
 {
-    public interface IJobsRepository
+    public interface IJobRepository : IRepository<Job>
     {
-        List<Job> GetAllJobs();
+        IEnumerable<Job> GetAll();
     }
 }

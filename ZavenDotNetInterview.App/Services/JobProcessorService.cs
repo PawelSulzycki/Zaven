@@ -12,17 +12,17 @@ namespace ZavenDotNetInterview.App.Services
 {
     public class JobProcessorService : IJobProcessorService
     {
-        private ZavenDotNetInterviewContext _ctx;
+        private IZavenDotNetInterviewContext _ctx;
 
-        public JobProcessorService(ZavenDotNetInterviewContext ctx)
+        public JobProcessorService(IZavenDotNetInterviewContext ctx)
         {
             _ctx = ctx;
         }
 
         public void ProcessJobs()
         {
-            IJobsRepository jobsRepository = new JobsRepository(_ctx);
-            var allJobs = jobsRepository.GetAllJobs();
+            IJobRepository jobsRepository = new JobRepository(_ctx);
+            var allJobs = jobsRepository.GetAll();
             var jobsToProcess = allJobs.Where(x => x.Status == JobStatus.New).ToList();
 
             jobsToProcess.ForEach(job => job.ChangeStatus(JobStatus.InProgress));

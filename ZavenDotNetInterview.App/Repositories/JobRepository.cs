@@ -9,18 +9,17 @@ using ZavenDotNetInterview.App.Repositories._Interfaces;
 
 namespace ZavenDotNetInterview.App.Repositories
 {
-    public class JobsRepository : IJobsRepository
+    public class JobRepository : Repository<Job>, IJobRepository
     {
-        private readonly ZavenDotNetInterviewContext _ctx;
-
-        public JobsRepository(ZavenDotNetInterviewContext ctx)
+        public JobRepository(IZavenDotNetInterviewContext ctx) : base(ctx) 
         {
-            _ctx = ctx;
         }
 
-        public List<Job> GetAllJobs()
+        public IEnumerable<Job> GetAll()
         {
-            return _ctx.Jobs.ToList();
+            var result = _ctx.Jobs;
+
+            return result;
         }
     }
 }

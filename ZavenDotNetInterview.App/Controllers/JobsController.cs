@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using ZavenDotNetInterview.App.Models;
-using ZavenDotNetInterview.App.Models.Context;
-using ZavenDotNetInterview.App.Repositories;
-using ZavenDotNetInterview.App.Services;
 using ZavenDotNetInterview.App.Services._Interfaces;
 
 namespace ZavenDotNetInterview.App.Controllers
@@ -24,14 +18,9 @@ namespace ZavenDotNetInterview.App.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            //using (ZavenDotNetInterviewContext _ctx = new ZavenDotNetInterviewContext())
-            //{
-            //    JobsRepository jobsRepository = new JobsRepository(_ctx);
-            //    List<Job> jobs = jobsRepository.GetAllJobs();
-            //    return View(jobs);
-            //}
+            var jobs = _jobValueService.GetAll().ToList();
 
-            return View();
+            return View(jobs);
         }
 
         // POST: Tasks/Process
