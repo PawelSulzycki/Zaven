@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using ZavenDotNetInterview.App.Services._Interfaces;
 
@@ -25,9 +26,9 @@ namespace ZavenDotNetInterview.App.Controllers
 
         // POST: Tasks/Process
         [HttpGet]
-        public ActionResult Process()
+        public async Task<ActionResult> Process()
         {
-            _jobProcessorService.ProcessJobs();
+            await _jobProcessorService.ProcessJobs();
 
             return RedirectToAction("Index");
         }

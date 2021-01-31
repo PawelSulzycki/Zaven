@@ -1,7 +1,9 @@
-﻿namespace ZavenDotNetInterview.App.Services._Interfaces
+﻿using System.Threading.Tasks;
+
+namespace ZavenDotNetInterview.App.Services._Interfaces
 {
     public interface IJobProcessorService
     {
-        void ProcessJobs();
+        Task ProcessJobs();
     }
 }

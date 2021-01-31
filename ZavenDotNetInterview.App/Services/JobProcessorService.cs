@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using ZavenDotNetInterview.App.Extensions;
 using ZavenDotNetInterview.App.Models;
-using ZavenDotNetInterview.App.Models.Context;
-using ZavenDotNetInterview.App.Repositories;
 using ZavenDotNetInterview.App.Repositories._Interfaces;
 using ZavenDotNetInterview.App.Services._Interfaces;
 
@@ -12,41 +9,52 @@ namespace ZavenDotNetInterview.App.Services
 {
     public class JobProcessorService : IJobProcessorService
     {
-        private IZavenDotNetInterviewContext _ctx;
+        private readonly IJobRepository _jobRepository;
 
-        public JobProcessorService(IZavenDotNetInterviewContext ctx)
+        public JobProcessorService(IJobRepository jobRepository)
         {
-            _ctx = ctx;
+            _jobRepository = jobRepository;
         }
 
-        public void ProcessJobs()
+        public async Task ProcessJobs()
         {
-            IJobRepository jobsRepository = new JobRepository(_ctx);
-            var allJobs = jobsRepository.GetAll();
-            var jobsToProcess = allJobs.Where(x => x.Status == JobStatus.New).ToList();
-
-            jobsToProcess.ForEach(job => job.ChangeStatus(JobStatus.InProgress));
-                        
-            _ctx.SaveChanges();
-
-            Parallel.ForEach(jobsToProcess, (currentjob) =>
+            var statusesToProcess = new JobStatus[]
             {
-                new Task(async () =>
-                {
-                    bool result = await this.ProcessJob(currentjob).ConfigureAwait(false);
-                    if (result)
-                    {
-                        currentjob.ChangeStatus(JobStatus.Done);
-                    }
-                    else
-                    {
-                        _ctx.SaveChanges();
-                        currentjob.ChangeStatus(JobStatus.Failed);
-                    }
-                }).Start();
+                JobStatus.New,
+                JobStatus.Failed
+            };
+
+            var jobsToProcess = _jobRepository.Get(x => statusesToProcess.Contains(x.Status));
+
+            var tasks = jobsToProcess.Select(async currentjob =>
+            {
+                await SetJobStatus(currentjob);
             });
 
-            _ctx.SaveChanges();
+            await Task.WhenAll(tasks);
+        }
+
+        private async Task SetJobStatus(Job currentjob)
+        {
+            var result = await this.ProcessJob(currentjob);
+
+            if (result)
+            {
+                ChangeStatus(currentjob, JobStatus.Done);
+            }
+            else
+            {
+                ChangeStatus(currentjob, JobStatus.Failed);
+            }
+        }
+
+        private void ChangeStatus(Job job, JobStatus jobStatus)
+        {
+            job.Status = jobStatus;
+
+            _jobRepository.Update(job);
+
+            _jobRepository.Save();
         }
 
         private async Task<bool> ProcessJob(Job job)
